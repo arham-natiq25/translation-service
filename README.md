@@ -160,7 +160,6 @@ Fails if the export endpoint exceeds 500ms on large datasets.
 - `php artisan migrate` – run migrations
 - `php artisan db:seed` – seed test data (including 100k+ records)
 - `php artisan translations:seed 10000`
-
 - `php artisan config:clear` – clear config cache
 - `php artisan test` – run all tests
 - `php artisan optimize:clear` – clear all compiled files
