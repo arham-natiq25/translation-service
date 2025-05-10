@@ -1,10 +1,10 @@
 # 🌐 Translation Management Service
 
-A high-performance, scalable API-driven service for managing translations across multiple languages and contexts — built with Laravel.
+A high-performance, scalable API-driven service for managing translations across multiple languages and contexts — built with Laravel 12.
 
 ---
 
-##  Features
+## 🚀 Features
 
 - ✅ Store translations for multiple locales (e.g., `en`, `fr`, `es`)
 - ✅ Tag translations for context (e.g., `mobile`, `desktop`, `web`)
@@ -15,6 +15,7 @@ A high-performance, scalable API-driven service for managing translations across
 - ✅ Command for seeding 100,000+ records to test scalability
 - ✅ Performance-tested endpoints (<200ms general, <500ms export)
 - ✅ Dockerized for easy development and deployment
+- ✅ OpenAPI (Swagger) documentation
 
 ---
 
@@ -45,22 +46,6 @@ A high-performance, scalable API-driven service for managing translations across
 - Clean architecture separating services, repositories, requests
 - **PSR-12** coding standards
 
-### ⚡ Performance Optimizations
-
-- Indexed columns on keys, language IDs, and tag relations
-- Eager loading of relationships
-- Response caching with Redis
-- CDN support with cache headers
-- JSON export endpoint optimized for <500ms with 100k+ records
-
----
-
-## 🔒 Security
-
-- API secured with **Laravel Sanctum tokens**
-- All inputs validated using **FormRequest** classes
-- Web routes protected with **CSRF tokens**
-
 ---
 
 ## 📦 Installation & Setup (Docker)
@@ -70,27 +55,27 @@ A high-performance, scalable API-driven service for managing translations across
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - Git
 
-### 🔥 Steps
+### 🧱 Steps
 
 ```bash
 # Clone the repo
 git clone https://github.com/arham-natiq25/translation-service
 cd translation-service
 
-# Start services
+# Start containers
 docker-compose up -d --build
 
 # Enter app container
 docker exec -it laravel_app bash
 
-# Set Laravel key
+# Generate app key
 php artisan key:generate
 
-# Migrate database
+# Migrate the database
 php artisan migrate
 
-# Optionally seed with dummy data
+# Seed with 100k+ records (optional)
 php artisan db:seed
 
-# Run tests
+# Run the test suite
 php artisan test
