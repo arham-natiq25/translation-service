@@ -1,59 +1,96 @@
-# Translation Management Service
+# 🌐 Translation Management Service
 
-A high-performance API-driven service for managing translations across multiple languages and contexts.
+A high-performance, scalable API-driven service for managing translations across multiple languages and contexts — built with Laravel.
 
-## Features
+---
 
-- Store translations for multiple locales (e.g., en, fr, es)
-- Tag translations for context (e.g., mobile, desktop, web)
-- CRUD operations for translations
-- Search translations by tags, keys, or content
-- JSON export endpoint for frontend applications
-- High performance with response times < 200ms
-- Scalable to handle 100k+ records
+##  Features
 
-## Technical Stack
+- ✅ Store translations for multiple locales (e.g., `en`, `fr`, `es`)
+- ✅ Tag translations for context (e.g., `mobile`, `desktop`, `web`)
+- ✅ Create, read, update, delete (CRUD) translations
+- ✅ Search translations by tags, keys, or content
+- ✅ JSON export endpoint for frontend usage (Vue.js compatible)
+- ✅ Token-based API authentication (Laravel Sanctum)
+- ✅ Command for seeding 100,000+ records to test scalability
+- ✅ Performance-tested endpoints (<200ms general, <500ms export)
+- ✅ Dockerized for easy development and deployment
 
-- Laravel 10
-- MySQL
-- Redis for caching
-- Docker for containerization
-- Laravel Sanctum for authentication
+---
 
-## Design Choices
+## 🛠️ Tech Stack
 
-### Database Schema
+- **Laravel 12**
+- **MySQL 8**
+- **Laravel Sanctum** for API authentication
+- **PHP 8.2 (FPM)**
+- **Nginx (Alpine)**
+- **Docker + Docker Compose**
 
-The database schema is designed for optimal performance and scalability:
+---
 
-- **Languages**: Stores available languages
-- **Tags**: Stores context tags
-- **TranslationKeys**: Stores unique translation keys
-- **Translations**: Stores the actual translation content
-- **TranslationTag**: Many-to-many relationship between keys and tags
+## 🧩 System Design Overview
 
-This normalized structure allows for efficient querying and reduces data redundancy.
+### 📄 Database Schema
 
-### Performance Optimizations
+- **languages**: stores locales (e.g., `en`, `fr`)
+- **tags**: stores context labels
+- **translation_keys**: stores unique translation keys
+- **translations**: stores localized content by language
+- **translation_tag**: many-to-many pivot table
 
-- **Caching**: Redis is used to cache translations by language and tags
-- **Indexing**: Strategic indexes on frequently queried columns
-- **Query Optimization**: Efficient SQL queries with proper joins and where clauses
-- **CDN Support**: Cache headers for the JSON export endpoint
+### 🧠 Design Principles
 
-### Security
+- Follows **SOLID** principles
+- Clean architecture separating services, repositories, requests
+- **PSR-12** coding standards
 
-- Token-based authentication using Laravel Sanctum
-- Input validation using Form Request classes
-- CSRF protection for web routes
+### ⚡ Performance Optimizations
 
-## Setup Instructions
+- Indexed columns on keys, language IDs, and tag relations
+- Eager loading of relationships
+- Response caching with Redis
+- CDN support with cache headers
+- JSON export endpoint optimized for <500ms with 100k+ records
 
-### Prerequisites
+---
 
-- Docker and Docker Compose
+## 🔒 Security
+
+- API secured with **Laravel Sanctum tokens**
+- All inputs validated using **FormRequest** classes
+- Web routes protected with **CSRF tokens**
+
+---
+
+## 📦 Installation & Setup (Docker)
+
+### 🔧 Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - Git
 
-### Installation
+### 🔥 Steps
 
-1. Clone the repository:
+```bash
+# Clone the repo
+git clone https://github.com/arham-natiq25/translation-service
+cd translation-service
+
+# Start services
+docker-compose up -d --build
+
+# Enter app container
+docker exec -it laravel_app bash
+
+# Set Laravel key
+php artisan key:generate
+
+# Migrate database
+php artisan migrate
+
+# Optionally seed with dummy data
+php artisan db:seed
+
+# Run tests
+php artisan test
